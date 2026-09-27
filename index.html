@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#100f10">
+    <meta name="description" content="Roam the Blood Moor, hunt demons, and defeat the Bloodhorn in Ashen Wilds, a browser action RPG.">
+    <title>Ashen Wilds — Blood Moor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Ashen Wilds home">
+          <span class="brand-sigil">A</span>
+          <span class="brand-name">ASHEN <b>WILDS</b></span>
+        </a>
+        <div class="top-center"><span class="status-dot"></span> ACT I <span class="top-divider">/</span> THE BLOOD MOOR</div>
+        <div class="top-actions">
+          <button class="quiet-button" id="sound-toggle" aria-label="Toggle sound" title="Toggle sound">♫ <span>Sound on</span></button>
+          <button class="quiet-button square" id="help-button" aria-label="Controls" title="Controls">?</button>
+        </div>
+      </header>
+
+      <main class="game-layout">
+        <section class="play-column" aria-label="Game">
+          <div class="scene-frame">
+            <canvas id="game" width="1000" height="650" aria-label="Ashen Wilds game world"></canvas>
+            <div class="scene-vignette"></div>
+
+            <div class="scene-label">
+              <div class="region-kicker"><span class="region-mark"></span> ROGUE ENCAMPMENT — FRONTIER</div>
+              <div class="region-name">THE BLOOD MOOR</div>
+            </div>
+            <div class="weather-pill"><span class="weather-icon">☁</span> OVERCAST <i></i> 11:42 PM</div>
+
+            <div class="quest-chip" id="quest-chip">
+              <div class="quest-icon">✦</div>
+              <div><small>ACTIVE QUEST</small><strong>Blood on the Moor</strong><span id="quest-short">Slay demons <b>0 / 12</b></span></div>
+            </div>
+
+            <div class="toast" id="toast" aria-live="polite"></div>
+            <div class="boss-banner" id="boss-banner"><span>ELITE</span><strong>THE BLOODHORN</strong><small>Warden of the old road</small></div>
+
+            <div class="hud">
+              <div class="orb-wrap health-wrap" title="Health">
+                <div class="orb health-orb"><div class="orb-fill" id="health-fill"></div><div class="orb-gloss"></div><span id="health-value">100</span></div>
+                <div class="orb-caption"><b>VITALITY</b><span id="potion-count">2 potions</span></div>
+              </div>
+              <div class="bottom-center">
+                <div class="xp-row"><span>LEVEL <b id="level-label">1</b></span><div class="xp-track"><i id="xp-fill"></i></div><span id="xp-label">0 / 100</span></div>
+                <div class="skill-bar">
+                  <div class="skill-slot basic-slot" title="Strike (left click)"><span class="skill-glyph">⚔</span><kbd>LMB</kbd></div>
+                  <div class="skill-slot" id="skill-bolt" title="Ember Bolt (Q)"><span class="skill-glyph ember">✦</span><kbd>Q</kbd><i class="skill-cost">8</i></div>
+                  <div class="skill-slot" id="skill-spin" title="Whirlwind (E)"><span class="skill-glyph spin">✥</span><kbd>E</kbd><i class="skill-cost">16</i></div>
+                  <div class="skill-slot evade-slot" title="Evade (Space)"><span class="skill-glyph">➤</span><kbd>SPACE</kbd></div>
+                  <div class="skill-slot potion-slot" title="Healing potion (R)"><span class="skill-glyph">✚</span><kbd>R</kbd><i class="potion-counter" id="potion-hotkey-count">2</i></div>
+                </div>
+              </div>
+              <div class="orb-wrap mana-wrap" title="Mana">
+                <div class="orb mana-orb"><div class="orb-fill" id="mana-fill"></div><div class="orb-gloss"></div><span id="mana-value">60</span></div>
+                <div class="orb-caption"><b>SPIRIT</b><span id="mana-regeneration">60 / 60</span></div>
+              </div>
+            </div>
+
+            <div class="intro-screen" id="intro-screen">
+              <div class="intro-ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+              <div class="intro-eyebrow">A FRONTIER IN FLAMES</div>
+              <h1>ASHEN<br><em>WILDS</em></h1>
+              <p>The old road is choked with the dead.<br>Make it safe before night takes the encampment.</p>
+              <button class="start-button" id="start-button">ENTER THE MOOR <span>→</span></button>
+              <div class="intro-foot">A DARK FANTASY ACTION RPG <i></i> CHAPTER ONE</div>
+            </div>
+
+            <div class="panel-backdrop" id="panel-backdrop"></div>
+            <section class="game-panel" id="game-panel" aria-label="Inventory and character" aria-hidden="true">
+              <div class="panel-head"><div><small id="panel-eyebrow">YOUR BELONGINGS</small><h2 id="panel-title">INVENTORY</h2></div><button id="close-panel" aria-label="Close panel">×</button></div>
+              <div class="panel-tabs"><button class="selected" data-panel-tab="inventory">PACK <span id="bag-count">0 / 12</span></button><button data-panel-tab="character">CHARACTER</button></div>
+              <div class="inventory-view" id="inventory-view"></div>
+              <div class="character-view" id="character-view" hidden></div>
+              <div class="panel-footer"><span>GOLD</span><strong>◈ <b id="gold-value">0</b></strong><small>Click an item to equip or use.</small></div>
+            </section>
+
+            <div class="pause-overlay" id="pause-overlay" hidden><div class="pause-card"><div class="intro-ornament">✦ &nbsp; ✦ &nbsp; ✦</div><small>THE MOOR WAITS</small><h2>PAUSED</h2><button id="resume-button" class="start-button">RETURN TO THE MOOR <span>→</span></button></div></div>
+
+            <div class="controls-hint" id="controls-hint"><span><kbd>WASD</kbd> MOVE</span><span><kbd>CLICK</kbd> STRIKE / MOVE</span><span><kbd>F</kbd> LOOT</span></div>
+          </div>
+
+          <div class="underbar">
+            <div class="online-status"><span class="status-dot"></span> OFFLINE <span class="under-divider">/</span> SINGLE PLAYER</div>
+            <div class="under-tip" id="tip-text">The dead grow restless when the moon is high.</div>
+            <div class="under-coords" id="coordinates">WILDS · 00, 00</div>
+          </div>
+        </section>
+
+        <aside class="sidebar">
+          <section class="card character-card">
+            <div class="card-head"><span>YOUR CHARACTER</span><button class="icon-button" id="open-character" title="Open character panel">↗</button></div>
+            <div class="hero-summary"><div class="hero-portrait"><span>W</span><i></i></div><div class="hero-info"><h2>WANDERER</h2><span><i class="class-dot"></i> WAYFARER <b>·</b> LEVEL <strong id="side-level">1</strong></span></div></div>
+            <div class="stat-strip"><div><span>ATTACK</span><b id="attack-stat">12</b></div><div><span>DEFENSE</span><b id="defense-stat">3</b></div><div><span>GOLD</span><b id="side-gold">0</b></div></div>
+            <div class="equipment-row"><span class="equipment-label">EQUIPPED</span><div class="equipped-icons"><div class="equip-icon weapon-icon" id="weapon-slot" title="Weapon">⚔<i></i></div><div class="equip-icon armor-icon" id="armor-slot" title="Armor">♢<i></i></div><div class="equip-icon charm-icon" title="Charm">◇</div></div><button class="text-link" id="open-inventory">INVENTORY <span>→</span></button></div>
+          </section>
+
+          <section class="card quest-card">
+            <div class="card-head"><span>QUEST LOG</span><span class="quest-active">ACTIVE</span></div>
+            <div class="quest-title-row"><span class="quest-badge">✦</span><div><small>ACT I · MAIN QUEST</small><h3>Blood on the Moor</h3></div></div>
+            <p id="quest-description">The old road is overrun. Thin their numbers before they reach the encampment.</p>
+            <div class="quest-objective"><span class="objective-check" id="objective-check"></span><span id="quest-objective">Slay demons</span><b id="quest-progress">0 / 12</b></div>
+            <div class="quest-complete-note" id="quest-complete-note" hidden>THE BLOODHORN HAS EMERGED</div>
+          </section>
+
+          <section class="card journal-card">
+            <div class="card-head"><span>FIELD NOTES</span><span class="live-mark">● LIVE</span></div>
+            <div class="journal-list" id="journal-list">
+              <div class="journal-entry"><i class="journal-dot"></i><span>Reached the edge of the Blood Moor.</span><time>JUST NOW</time></div>
+            </div>
+          </section>
+
+          <section class="map-card">
+            <div class="map-head"><span>AREA MAP</span><span class="map-floor">SURFACE · NIGHT</span></div>
+            <canvas id="minimap" width="240" height="138" aria-label="Area map"></canvas>
+            <div class="map-legend"><span><i class="legend-player"></i> YOU</span><span><i class="legend-enemy"></i> HOSTILE</span><span><i class="legend-loot"></i> LOOT</span></div>
+          </section>
+          <div class="sidebar-foot"><span>ASHEN WILDS <b>0.1.0</b></span><span>◈ &nbsp; THE ROGUE ENCAMPMENT</span></div>
+        </aside>
+      </main>
+      <div class="mobile-help"><button id="mobile-inventory">◉ INVENTORY</button><span>Tap ground to move · tap a demon to strike</span></div>
+    </div>
+    <script src="game.js"></script>
+  </body>
+</html>
