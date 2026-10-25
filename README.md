@@ -1,5 +1,9 @@
 # Ashen Wilds
 
+## Play online
+
+[Play Ashen Wilds](https://intrepion.github.io/kata-diablo-2-clone-gpt-6-luna-extra-high-/) — free, playable in your browser.
+
 A small, original browser action RPG inspired by classic isometric dungeon crawlers. Roam the Blood Moor, hunt demons, collect gear, and defeat the Bloodhorn.
 
 ## Play
