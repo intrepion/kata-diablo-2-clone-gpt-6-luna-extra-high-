@@ -25,3 +25,7 @@ Open `index.html` in a modern browser. No build step, server, or third-party ass
 Defeat twelve demons to draw out the Bloodhorn. Defeated enemies grant experience and may drop gold or equipment. Equip found gear from the inventory panel.
 
 The game is a compact playable slice rather than a full multi-act remake: it has one wilderness map, one hero archetype, three enemy types, an elite boss, loot, equipment, and level progression.
+
+## Arcade metadata
+
+See [docs/arcade-metadata.md](docs/arcade-metadata.md) for the game-owned manifest and screenshot provenance.
