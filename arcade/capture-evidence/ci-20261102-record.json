@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "workflowCommit": "fcd96dbb3cddda1a019126cf57234305039b68fc",
+  "sourceCommit": "de0c197a3cf2636d0df6be5c60653797cf9bf12d",
+  "runId": "41399097975",
+  "url": "http://127.0.0.1:4210/",
+  "inputs": {
+    "index.html": "610e3b3bf908813a327d31174ed3528a754173a14d57f2ac970bc74d3fd31c63",
+    "styles.css": "22839b4f00970f2a1024711cdc65c5b52eea7bb4e990d1820d293a765fb2aa3b",
+    "game.js": "9a7ca6c071949a3bf66d8ad9645ffc9054e026bef9b0907c213e6b907591feac"
+  },
+  "browser": "153.0.8010.12",
+  "viewport": {
+    "width": 1280,
+    "height": 1000
+  },
+  "screenshots": [
+    "ashen-01.png",
+    "ashen-02.png"
+  ]
+}

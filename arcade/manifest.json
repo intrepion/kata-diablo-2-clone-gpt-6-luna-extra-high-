@@ -1,6 +1,47 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "gameId": "kata-diablo-2-clone-gpt-6-luna-extra-high-",
   "playUrl": "https://intrepion.github.io/kata-diablo-2-clone-gpt-6-luna-extra-high-/",
-  "screenshots": []
+  "screenshots": [
+    {
+      "path": "arcade/screenshots/ci-20261102-01.jpg",
+      "sha256": "7b35d0723901a35f7b66d8034e913b74504dc3b727af6a8741067f05d0c86fa0",
+      "alt": "Ashen Wilds gameplay, view 1",
+      "provenance": {
+        "kind": "ci_gameplay_capture",
+        "sourcePath": "arcade/capture-evidence/ci-20261102-01.png",
+        "sourceSha256": "6978e2e8aa180b47632336a13f32a886c6f7d83944d3fa376ff7715429d1b9da",
+        "captureCommit": "de0c197a3cf2636d0df6be5c60653797cf9bf12d",
+        "workflowRunId": "41399097975",
+        "inputHashes": {
+          "index.html": "610e3b3bf908813a327d31174ed3528a754173a14d57f2ac970bc74d3fd31c63",
+          "styles.css": "22839b4f00970f2a1024711cdc65c5b52eea7bb4e990d1820d293a765fb2aa3b",
+          "game.js": "9a7ca6c071949a3bf66d8ad9645ffc9054e026bef9b0907c213e6b907591feac"
+        },
+        "publishedFilesVerifiedAt": "2026-11-02T19:01:20Z",
+        "captureRecordPath": "arcade/capture-evidence/ci-20261102-record.json",
+        "captureRecordSha256": "0320401ecb76c101b6dd52455f2e4cd2cfe7c5a9c0942663812c2f06b99b4596"
+      }
+    },
+    {
+      "path": "arcade/screenshots/ci-20261102-02.jpg",
+      "sha256": "8fb437c6dc50696ed61cc6f186ba5d9efd6faf4323f4d936971db3206b527360",
+      "alt": "Ashen Wilds gameplay, view 2",
+      "provenance": {
+        "kind": "ci_gameplay_capture",
+        "sourcePath": "arcade/capture-evidence/ci-20261102-02.png",
+        "sourceSha256": "1d6f05464d8c2ba3846693d78cf579ccde5894da6bcf85a7780eb2fe5f8bbb46",
+        "captureCommit": "de0c197a3cf2636d0df6be5c60653797cf9bf12d",
+        "workflowRunId": "41399097975",
+        "inputHashes": {
+          "index.html": "610e3b3bf908813a327d31174ed3528a754173a14d57f2ac970bc74d3fd31c63",
+          "styles.css": "22839b4f00970f2a1024711cdc65c5b52eea7bb4e990d1820d293a765fb2aa3b",
+          "game.js": "9a7ca6c071949a3bf66d8ad9645ffc9054e026bef9b0907c213e6b907591feac"
+        },
+        "publishedFilesVerifiedAt": "2026-11-02T19:01:20Z",
+        "captureRecordPath": "arcade/capture-evidence/ci-20261102-record.json",
+        "captureRecordSha256": "0320401ecb76c101b6dd52455f2e4cd2cfe7c5a9c0942663812c2f06b99b4596"
+      }
+    }
+  ]
 }
